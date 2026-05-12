@@ -24,8 +24,14 @@ jobs:
 
       - name: Build Docker Image
         run: |
-          docker build -t laksha020906/aws-cicd:${{ github.sha }} .
-          docker tag laksha020906/aws-cicd:${{ github.sha }} laksha020906/aws-cicd:latest
+          docker build \
+            -t laksha020906/aws-cicd:${{ github.sha }} \
+            -f "react-profile-main (1)/react-profile-main/Dockerfile" \
+            "react-profile-main (1)/react-profile-main"
+
+          docker tag \
+            laksha020906/aws-cicd:${{ github.sha }} \
+            laksha020906/aws-cicd:latest
 
       - name: Push Docker Images
         run: |
